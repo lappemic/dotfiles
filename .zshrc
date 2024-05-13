@@ -15,10 +15,9 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
+  history-substring-search
+  nvm
   zsh-you-should-use
-  zsh-direnv
-  zsh-interactive-cd
-  zsh-z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -29,6 +28,9 @@ source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-sy
 # Enable autosuggestions
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Setup direnv
+eval "$(direnv hook zsh)"
+
 # Uncomment to enable command auto-correction.
 ENABLE_CORRECTION="true"
 
@@ -36,8 +38,11 @@ ENABLE_CORRECTION="true"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Custom aliases
-alias zshconfig="vim ~/dotfiles/.zshrc"
-alias ohmyzsh="vim ~/dotfiles/.oh-my-zsh"
-
+# alias zshconfig="nano ~/.zshrc"
+# alias ohmyzsh="nano ~/.oh-my-zsh"
+# Use fzf for interactive cd
+alias icd='cd $(find * -type d | fzf)'
 alias gacp="git add .; git commit -m 'update'; git push"
 
+# Uncomment to enable command auto-correction.
+ENABLE_CORRECTION="true"
