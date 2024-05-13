@@ -23,6 +23,11 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-completions" ]; then
   git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
 fi
 
+# Powerlevel10k theme
+if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+fi
+
 # Symlink dotfiles to home directory
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
