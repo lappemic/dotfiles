@@ -23,6 +23,31 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-completions" ]; then
   git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
 fi
 
+# Install zsh-history-substring-search
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-history-substring-search" ]; then
+  git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_CUSTOM/plugins/zsh-history-substring-search
+fi
+
+# Install zsh-you-should-use
+if [ ! -d "$ZSH_CUSTOM/plugins/you-should-use" ]; then
+  git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/you-should-use
+fi
+
+# Install zsh-direnv
+if [ ! -d "$ZSH_CUSTOM/plugins/direnv" ]; then
+  git clone https://github.com/direnv/direnv $ZSH_CUSTOM/plugins/direnv
+fi
+
+# Install zsh-interactive-cd
+if [ ! -d "$ZSH_CUSTOM/plugins/interactive-cd" ]; then
+  git clone https://github.com/changyuheng/zsh-interactive-cd $ZSH_CUSTOM/plugins/interactive-cd
+fi
+
+# Install zsh-z
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-z" ]; then
+  git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
+fi
+
 # Powerlevel10k theme
 if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
@@ -32,4 +57,4 @@ fi
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 
-echo "Dotfiles setup completed"
+echo "Dotfiles setup completed, don't forget to restart the terminal."
