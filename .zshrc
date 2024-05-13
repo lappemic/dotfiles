@@ -15,6 +15,10 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
+  zsh-you-should-use
+  zsh-direnv
+  zsh-interactive-cd
+  zsh-z
 )
 
 source $ZSH/oh-my-zsh.sh
