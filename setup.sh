@@ -63,6 +63,16 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-z" ]; then
   git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
 fi
 
+# Check if already a vscode settings.json file exists
+if [ ! -L ~/Library/Application\ Support/Code/User/settings.json ]; then
+    # Backup existing settings.json if it exists
+    mv ~/Library/Application\ Support/Code/User/settings.json ~/Library/Application\ Support/Code/User/settings.json.backup
+
+    # Create a symlink
+    ln -s ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+fi
+
+
 # Create symlinks for dotfiles
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
