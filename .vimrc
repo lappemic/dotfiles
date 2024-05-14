@@ -8,6 +8,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
 Plug 'junegunn/fzf.vim'         " FZF integration for Vim
 Plug 'scrooloose/nerdtree'      " File explorer
 Plug 'airblade/vim-gitgutter'   " Git integration
+Plug 'davidhalter/jedi-vim'     " Python autocompletion
 
 " Initialize plugin system
 call plug#end()
