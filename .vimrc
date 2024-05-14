@@ -44,3 +44,10 @@ map <C-p> :Files<CR>             " Open FZF file finder with Ctrl+p
 " Automatically activate Python virtual environments
 autocmd BufEnter * if isdirectory('.venv') | execute '!source .venv/bin/activate' | endif
 autocmd BufEnter * if isdirectory('venv') | execute '!source venv/bin/activate' | endif
+
+" Enable jedi autocompletion, auto initialization and show call signatures
+" dynamically
+let g:jedi#completions_enabled = 1
+let g:jedi#auto_initialization = 1
+let g:jedi#show_call_signatures = "1"
+
