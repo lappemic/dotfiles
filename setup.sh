@@ -81,9 +81,6 @@ ln -sf ~/dotfiles/.fzf.zsh ~/.fzf.zsh
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/tmux-dracula ~/tmux-dracula
 
-# For Neovim
-mkdir -p ~/.config/nvim
-ln -sf ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 
 # Install vim-plug for Vim
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
@@ -91,10 +88,5 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-# Install vim-plug for Neovim
-if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
-  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
 
 echo "Dotfiles setup completed. Please restart your terminal."
