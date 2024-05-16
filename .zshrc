@@ -38,11 +38,31 @@ ENABLE_CORRECTION="true"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Custom aliases
-# alias zshconfig="nano ~/.zshrc"
-# alias ohmyzsh="nano ~/.oh-my-zsh"
 # Use fzf for interactive cd
 alias icd='cd $(find * -type d | fzf)'
 alias gacp="git add .; git commit -m 'update'; git push"
+# https://github.com/pyenv/pyenv#homebrew-in-macos 
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+alias zshconfig="vim ~/dotfiles/.zshrc"
 
 # Uncomment to enable command auto-correction.
 ENABLE_CORRECTION="true"
+
+# let zsh use the pyenv python
+# https://opensource.com/article/19/5/python-3-default-mac
+echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+if command -v pyenv 1>/dev/null 2>&1; then
+      eval "$(pyenv init -)"
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
