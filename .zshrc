@@ -51,7 +51,10 @@ ENABLE_CORRECTION="true"
 
 # let zsh use the pyenv python
 # https://opensource.com/article/19/5/python-3-default-mac
-echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
-if command -v pyenv 1>/dev/null 2>&1; then
-      eval "$(pyenv init -)"
+# Check if the command exists in ~/.zshrc
+if ! grep -q 'if command -v pyenv 1>/dev/null 2>&1; then' ~/.zshrc; then
+  echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+  echo "Added pyenv initialization to ~/.zshrc"
+else
+  echo "pyenv initialization already present in ~/.zshrc"
 fi
