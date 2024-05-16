@@ -80,6 +80,7 @@ ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.fzf.zsh ~/.fzf.zsh
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/tmux-dracula ~/tmux-dracula
+ln -sf ~/dotfiles/.ssh/config ~/.ssh/config
 
 
 # Install vim-plug for Vim
