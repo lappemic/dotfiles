@@ -44,6 +44,7 @@ alias gacp="git add .; git commit -m 'update'; git push"
 # https://github.com/pyenv/pyenv#homebrew-in-macos 
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 alias zshconfig="vim ~/dotfiles/.zshrc"
+alias vimconfig="vim ~/dotfiles/.vimrc" 
 
 # Uncomment to enable command auto-correction.
 ENABLE_CORRECTION="true"
@@ -53,16 +54,4 @@ ENABLE_CORRECTION="true"
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
 if command -v pyenv 1>/dev/null 2>&1; then
       eval "$(pyenv init -)"
-fi
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
 fi
