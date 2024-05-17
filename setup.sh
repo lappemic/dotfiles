@@ -33,26 +33,6 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-history-substring-search" ]; then
   git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_CUSTOM/plugins/zsh-history-substring-search
 fi
 
-# Install zsh-nvm
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-nvm" ]; then
-  git clone https://github.com/lukechilds/zsh-nvm $ZSH_CUSTOM/plugins/zsh-nvm
-fi
-
-# Install zsh-you-should-use
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-you-should-use" ]; then
-  git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/zsh-you-should-use
-fi
-
-# Install zsh-direnv
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-direnv" ]; then
-  git clone https://github.com/direnv/direnv $ZSH_CUSTOM/plugins/zsh-direnv
-fi
-
-# Install zsh-interactive-cd
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-interactive-cd" ]; then
-  git clone https://github.com/changyuheng/zsh-interactive-cd $ZSH_CUSTOM/plugins/zsh-interactive-cd
-fi
-
 # Install zsh-vi-mode
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]; then
   git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
