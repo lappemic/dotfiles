@@ -41,7 +41,7 @@ map <C-n> :NERDTreeToggle<CR>
 
 " FZF settings
 " -> " Open FZF file finder with Ctrl+p
-map <C-p> :Files<CR>             
+map <C-p> :Files<CR>
 
 " Automatically activate Python virtual environments
 autocmd BufEnter * if isdirectory('.venv') | execute '!source .venv/bin/activate' | endif
