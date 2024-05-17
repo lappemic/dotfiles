@@ -45,6 +45,8 @@ alias gacp="git add .; git commit -m 'update'; git push"
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 alias zshconfig="vim ~/dotfiles/.zshrc"
 alias vimconfig="vim ~/dotfiles/.vimrc" 
+alias tmuxconfig="vim ~/dotfiles/.tmux.conf"
+alias ghcs="gh copilot suggest"
 
 # Uncomment to enable command auto-correction.
 ENABLE_CORRECTION="true"
