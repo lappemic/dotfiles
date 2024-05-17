@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'         " FZF integration for Vim
 Plug 'scrooloose/nerdtree'      " File explorer
 Plug 'airblade/vim-gitgutter'   " Git integration
 Plug 'davidhalter/jedi-vim'     " Python autocompletion
+Plug 'github/copilot.vim'       " Github copilot
 
 " Initialize plugin system
 call plug#end()
