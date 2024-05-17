@@ -69,5 +69,15 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+# Install node and npm if not installed
+if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
+   curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+   sudo apt-get install -y nodejs
+fi
+
+# Install GitHub Copilot plugin for Vim
+if [ ! -d ~/.vim/plugged/copilot.vim ]; then
+    vim -c 'PlugInstall github/copilot.vim' -c 'qa!'
+fi
 
 echo "Dotfiles setup completed. Please restart your terminal."
