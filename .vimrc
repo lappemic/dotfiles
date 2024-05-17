@@ -36,10 +36,12 @@ set cursorline              " Highlight the current line
 set termguicolors           " Enable 24-bit RGB colors
 
 " NERDTree settings
-map <C-n> :NERDTreeToggle<CR>    " Toggle NERDTree with Ctrl+n
+" -> Toggle NERDTree with Ctrl+n
+map <C-n> :NERDTreeToggle<CR>   
 
 " FZF settings
-map <C-p> :Files<CR>             " Open FZF file finder with Ctrl+p
+" -> " Open FZF file finder with Ctrl+p
+map <C-p> :Files<CR>             
 
 " Automatically activate Python virtual environments
 autocmd BufEnter * if isdirectory('.venv') | execute '!source .venv/bin/activate' | endif
