@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Install Oh My Zsh if not installed
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -8,9 +8,14 @@ fi
 # Define ZSH_CUSTOM if not already set
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 
-# Install Powerlevel10k theme
+# Install Powerlevel10k theme for Oh My Zsh
 if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+fi
+
+# Install tmux-dracula theme
+if [ ! -d "$HOME/.tmux/tmux-dracula" ]; then
+  git clone https://github.com/dracula/tmux.git $HOME/.tmux/tmux-dracula
 fi
 
 # Install zsh-autosuggestions
@@ -52,16 +57,13 @@ if [ ! -L ~/Library/Application\ Support/Code/User/settings.json ]; then
     ln -s ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 fi
 
-
 # Create symlinks for dotfiles
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.fzf.zsh ~/.fzf.zsh
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/tmux-dracula ~/tmux-dracula
 ln -sf ~/dotfiles/.ssh/config ~/.ssh/config
-
 
 # Install vim-plug for Vim
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
@@ -78,6 +80,9 @@ fi
 # Install GitHub Copilot plugin for Vim
 if [ ! -d ~/.vim/plugged/copilot.vim ]; then
     vim -c 'PlugInstall github/copilot.vim' -c 'qa!'
+    # Authenticate with GitHub Copilot
+    echo "Please authenticate with GitHub Copilot in Vim"
+    vim -c 'Copilot setup' -c 'qa!'
 fi
 
 # let zsh use the pyenv python
@@ -89,6 +94,12 @@ if ! grep -q 'if command -v pyenv 1>/dev/null 2>&1; then' ~/.zshrc; then
   echo 'fi' >> ~/.zshrc
   # Source the ~/.zshrc file to apply changes immediately
   source ~/.zshrc
+fi
+
+# Update .tmux.conf to include the dracula theme
+if ! grep -q 'run-shell "~/.tmux/tmux-dracula/dracula.tmux"' ~/.tmux.conf; then
+  echo 'run-shell "~/.tmux/tmux-dracula/dracula.tmux"' >> ~/.tmux.conf
+  echo 'run-shell "tmux source ~/.tmux.conf"'
 fi
 
 echo "Dotfiles setup completed. Please restart your terminal."

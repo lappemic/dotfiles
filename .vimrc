@@ -54,3 +54,9 @@ let g:jedi#completions_enabled = 1
 let g:jedi#auto_initialization = 1
 let g:jedi#show_call_signatures = "1"
 
+" GitHub Copilot settings
+let g:copilot_no_tab_map = v:true
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-K> copilot#Cancel()
+imap <silent><script><expr> <C-L> copilot#Next()
+
