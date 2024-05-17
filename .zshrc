@@ -3,7 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your oh-my-zsh installation.
+# Path to oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load
@@ -31,7 +31,7 @@ source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosu
 # Setup direnv
 eval "$(direnv hook zsh)"
 
-# Uncomment to enable command auto-correction.
+# Enable command auto-correction.
 ENABLE_CORRECTION="true"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
