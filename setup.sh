@@ -80,4 +80,15 @@ if [ ! -d ~/.vim/plugged/copilot.vim ]; then
     vim -c 'PlugInstall github/copilot.vim' -c 'qa!'
 fi
 
+# let zsh use the pyenv python
+# https://opensource.com/article/19/5/python-3-default-mac
+# Check if the command exists in ~/.zshrc
+if ! grep -q 'if command -v pyenv 1>/dev/null 2>&1; then' ~/.zshrc; then
+  echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> ~/.zshrc
+  echo '  eval "$(pyenv init -)"' >> ~/.zshrc
+  echo 'fi' >> ~/.zshrc
+  # Source the ~/.zshrc file to apply changes immediately
+  source ~/.zshrc
+fi
+
 echo "Dotfiles setup completed. Please restart your terminal."
