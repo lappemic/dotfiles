@@ -1,0 +1,164 @@
+{
+  "main": {
+    "id": "b60945ba39649244",
+    "type": "split",
+    "children": [
+      {
+        "id": "b484b8c19f4dd0c9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fe5fef3d679a08ab",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          },
+          {
+            "id": "d8f753de9f48cf8d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "areas/productivity/opensource contributions.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": true
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "507fb329f2c952ad",
+    "type": "split",
+    "children": [
+      {
+        "id": "2d89f2e64ae79007",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a599b221feb2d208",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "9313bff8191a9940",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "contributions",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "aae37759823703ba",
+    "type": "split",
+    "children": [
+      {
+        "id": "84edb5b57697d121",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "781acb4247494245",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "areas/productivity/opensource contributions.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e19efde688981941",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "areas/productivity/opensource contributions.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "bd51194171430da4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "graph:Open graph view": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "zk-prefixer:Create new unique note": false
+    }
+  },
+  "active": "d8f753de9f48cf8d",
+  "lastOpenFiles": [
+    "resources/books/The Book You Wish Your Parents Had Read/Expressing feelings.md",
+    "resources/books/21 Lessons for the 21st Century/Despair & Hope.md",
+    "fleeting_notes/Where i want to work.md",
+    "resources/books/21 Lessons for the 21st Century/Technological Challenges.md",
+    "fleeting_notes/bl_future.md",
+    "fleeting_notes/ai emulator.md",
+    "resources/books/How to Take Smart Notes/How to Take Smart Notes.md",
+    "resources/books/21 Lessons for the 21st Century/Future Prospects.md",
+    "resources/books/21 Lessons for the 21st Century/Truth & Resilience.md",
+    "resources/books/21 Lessons for the 21st Century/Political Challenges.md",
+    "areas/productivity/opensource contributions.md",
+    "fleeting_notes/Emphasise with your child.md",
+    "fleeting_notes/virtualenvironments",
+    "fleeting_notes/pyenv.md",
+    "fleeting_notes/test.md",
+    "fleeting_notes/Unix Tradition.md",
+    "fleeting_notes/'Unix Tradition.md'",
+    "'Unix Tradition.md'",
+    "resources/books/Books.md",
+    "resources/books/How to Talk so Children Listen"
+  ]
+}
