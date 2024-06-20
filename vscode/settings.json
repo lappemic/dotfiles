@@ -9,8 +9,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.tabWidth": 2,
   "files.autoSave": "onFocusChange",
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
   "python.formatting.autopep8Path": "autopep8",
   "python.formatting.blackPath": "black",
   "python.formatting.blackArgs": ["--line-length", "88"],
@@ -41,5 +39,6 @@
     "editor.detectIndentation": true
   },
   "git.autofetch": true,
-  "python.venvPath": ".venv"
+  "python.venvPath": "/Users/mi/repos",
+  "python.pythonPath": "${workspaceFolder}/.venv/bin/python"
 }
