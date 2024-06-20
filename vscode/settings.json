@@ -40,5 +40,6 @@
     "editor.insertSpaces": true,
     "editor.detectIndentation": true
   },
-  "git.autofetch": true
+  "git.autofetch": true,
+  "python.venvPath": ".venv"
 }
