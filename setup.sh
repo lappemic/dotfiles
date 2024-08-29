@@ -1,26 +1,34 @@
-#!/bin/bash
+#!/bin/zsh
 
-# Function to check if a command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
+# Function to install Vim-Plug
+install_vim_plug() {
+    if [ ! -f ~/.vim/autoload/plug.vim ]; then
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
 }
 
-# Install Zsh if not installed (Ubuntu-specific)
-if ! command_exists zsh; then
+# Function to install Gruvbox color scheme for Vim
+install_gruvbox() {
+    if [ ! -d ~/.vim/pack/default/start/gruvbox ]; then
+        mkdir -p ~/.vim/pack/default/start
+        git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
+    fi
+}
+
+# Check if Zsh is installed, if not, install it
+if ! command -v zsh &> /dev/null; then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         sudo apt-get update
         sudo apt-get install -y zsh
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install zsh
     fi
-fi
-
-# Set Zsh as the default shell
-if [[ "$SHELL" != */zsh ]]; then
-    chsh -s $(which zsh)
 fi
 
 # Install Oh My Zsh if not installed
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 # Define ZSH_CUSTOM if not already set
@@ -28,15 +36,15 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 
 # Install Powerlevel10k theme for Oh My Zsh
 if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 fi
 
 # Install tmux-dracula theme
 if [ ! -d "$HOME/.tmux/tmux-dracula" ]; then
-  git clone https://github.com/dracula/tmux.git $HOME/.tmux/tmux-dracula
+    git clone https://github.com/dracula/tmux.git $HOME/.tmux/tmux-dracula
 fi
 
-# Install zsh plugins
+# Install various Zsh plugins
 plugins=(
     "zsh-autosuggestions"
     "zsh-syntax-highlighting"
@@ -48,26 +56,9 @@ plugins=(
 
 for plugin in "${plugins[@]}"; do
     if [ ! -d "$ZSH_CUSTOM/plugins/$plugin" ]; then
-        git clone "https://github.com/zsh-users/$plugin" "$ZSH_CUSTOM/plugins/$plugin"
+        git clone https://github.com/zsh-users/$plugin.git $ZSH_CUSTOM/plugins/$plugin
     fi
 done
-
-# VSCode settings
-vscode_settings_dir=""
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    vscode_settings_dir="$HOME/Library/Application Support/Code/User"
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    vscode_settings_dir="$HOME/.config/Code/User"
-fi
-
-if [ ! -L "$vscode_settings_dir/settings.json" ]; then
-    # Backup existing settings.json if it exists
-    [ -f "$vscode_settings_dir/settings.json" ] && mv "$vscode_settings_dir/settings.json" "$vscode_settings_dir/settings.json.backup"
-
-    # Create a symlink
-    mkdir -p "$vscode_settings_dir"
-    ln -s ~/dotfiles/vscode/settings.json "$vscode_settings_dir/settings.json"
-fi
 
 # Create symlinks for dotfiles
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
@@ -75,22 +66,23 @@ ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.fzf.zsh ~/.fzf.zsh
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+
+# Ensure .ssh directory exists
+mkdir -p ~/.ssh
 ln -sf ~/dotfiles/.ssh/config ~/.ssh/config
 
-# Install vim-plug for Vim
-if [ ! -f ~/.vim/autoload/plug.vim ]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
+# Install Vim-Plug and Gruvbox
+install_vim_plug
+install_gruvbox
 
 # Install node and npm if not installed
-if ! command_exists node || ! command_exists npm; then
+if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # macOS-specific installation
         brew install node
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Ubuntu-specific installation
-        curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+        curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
         sudo apt-get install -y nodejs
     fi
 fi
@@ -103,7 +95,7 @@ if [ ! -d ~/.vim/plugged/copilot.vim ]; then
     vim -c 'Copilot setup' -c 'qa!'
 fi
 
-# Pyenv setup
+# Setup pyenv in .zshrc if not already present
 if ! grep -q 'if command -v pyenv 1>/dev/null 2>&1; then' ~/.zshrc; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # macOS-specific pyenv setup
@@ -124,8 +116,8 @@ fi
 
 # Update .tmux.conf to include the dracula theme
 if ! grep -q 'run-shell "~/.tmux/tmux-dracula/dracula.tmux"' ~/.tmux.conf; then
-  echo 'run-shell "~/.tmux/tmux-dracula/dracula.tmux"' >> ~/.tmux.conf
-  echo 'run-shell "tmux source ~/.tmux.conf"'
+    echo 'run-shell "~/.tmux/tmux-dracula/dracula.tmux"' >> ~/.tmux.conf
+    echo 'run-shell "tmux source ~/.tmux.conf"'
 fi
 
 echo "Dotfiles setup completed. Please restart your terminal."
