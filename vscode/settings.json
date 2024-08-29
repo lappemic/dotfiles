@@ -1,5 +1,4 @@
 {
-  "workbench.colorTheme": "Dracula",
   "workbench.iconTheme": "material-icon-theme",
   "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
   "editor.fontSize": 14,
@@ -42,5 +41,7 @@
   "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
   "RainbowBrackets.depreciation-notice": false,
   "editor.formatOnPaste": true,
-  "notebook.formatOnSave.enabled": true
+  "notebook.formatOnSave.enabled": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
 }
