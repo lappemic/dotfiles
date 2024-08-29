@@ -73,8 +73,14 @@ fi
 
 # Install node and npm if not installed
 if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
-   curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-   sudo apt-get install -y nodejs
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS-specific installation
+        brew install node
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Ubuntu-specific installation
+        curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+    fi
 fi
 
 # Install GitHub Copilot plugin for Vim
@@ -89,11 +95,21 @@ fi
 # https://opensource.com/article/19/5/python-3-default-mac
 # Check if the command exists in ~/.zshrc
 if ! grep -q 'if command -v pyenv 1>/dev/null 2>&1; then' ~/.zshrc; then
-  echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> ~/.zshrc
-  echo '  eval "$(pyenv init -)"' >> ~/.zshrc
-  echo 'fi' >> ~/.zshrc
-  # Source the ~/.zshrc file to apply changes immediately
-  source ~/.zshrc
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS-specific pyenv setup
+        echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> ~/.zshrc
+        echo '  eval "$(pyenv init -)"' >> ~/.zshrc
+        echo 'fi' >> ~/.zshrc
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Ubuntu-specific pyenv setup
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+        echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+        echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> ~/.zshrc
+        echo '  eval "$(pyenv init -)"' >> ~/.zshrc
+        echo 'fi' >> ~/.zshrc
+    fi
+    # Source the ~/.zshrc file to apply changes immediately
+    source ~/.zshrc
 fi
 
 # Update .tmux.conf to include the dracula theme

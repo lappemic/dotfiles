@@ -58,12 +58,16 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # pnpm
-export PNPM_HOME="/Users/mi/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PNPM_HOME="/Users/mi/Library/pnpm"
+    case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
+else
+    # Ubuntu pnpm setup (if different)
+    # update when needed
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -80,4 +84,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+# Conditional Homebrew PATH addition
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+fi
