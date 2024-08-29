@@ -37,6 +37,7 @@ ENABLE_CORRECTION="true"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# TODO: Move the following aliases to a separate file (e.g. ~/.zsh_aliases) in the dotfiles
 # Custom aliases
 # Use fzf for interactive cd
 alias icd='cd $(find * -type d | fzf)'
@@ -79,3 +80,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
