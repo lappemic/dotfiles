@@ -37,7 +37,7 @@
     "editor.detectIndentation": true
   },
   "git.autofetch": true,
-  "python.venvPath": "/Users/mi/repos",
+  "python.venvPath": "${env:HOME}/repos",
   "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
   "RainbowBrackets.depreciation-notice": false,
   "editor.formatOnPaste": true,
