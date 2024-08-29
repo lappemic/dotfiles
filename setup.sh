@@ -16,6 +16,16 @@ install_gruvbox() {
     fi
 }
 
+# Install direnv if not installed
+if ! command -v direnv &> /dev/null; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install direnv
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo apt-get update
+        sudo apt-get install -y direnv
+    fi
+fi
+
 # Check if Zsh is installed, if not, install it
 if ! command -v zsh &> /dev/null; then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
