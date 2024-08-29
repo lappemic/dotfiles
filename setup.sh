@@ -1,4 +1,22 @@
-#!/bin/zsh
+#!/bin/bash
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Install Zsh if not installed (Ubuntu-specific)
+if ! command_exists zsh; then
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo apt-get update
+        sudo apt-get install -y zsh
+    fi
+fi
+
+# Set Zsh as the default shell
+if [[ "$SHELL" != */zsh ]]; then
+    chsh -s $(which zsh)
+fi
 
 # Install Oh My Zsh if not installed
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -18,43 +36,37 @@ if [ ! -d "$HOME/.tmux/tmux-dracula" ]; then
   git clone https://github.com/dracula/tmux.git $HOME/.tmux/tmux-dracula
 fi
 
-# Install zsh-autosuggestions
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# Install zsh plugins
+plugins=(
+    "zsh-autosuggestions"
+    "zsh-syntax-highlighting"
+    "zsh-completions"
+    "zsh-history-substring-search"
+    "zsh-vi-mode"
+    "zsh-z"
+)
+
+for plugin in "${plugins[@]}"; do
+    if [ ! -d "$ZSH_CUSTOM/plugins/$plugin" ]; then
+        git clone "https://github.com/zsh-users/$plugin" "$ZSH_CUSTOM/plugins/$plugin"
+    fi
+done
+
+# VSCode settings
+vscode_settings_dir=""
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    vscode_settings_dir="$HOME/Library/Application Support/Code/User"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    vscode_settings_dir="$HOME/.config/Code/User"
 fi
 
-# Install zsh-syntax-highlighting
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-fi
-
-# Install zsh-completions
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-completions" ]; then
-  git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
-fi
-
-# Install zsh-history-substring-search
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-history-substring-search" ]; then
-  git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_CUSTOM/plugins/zsh-history-substring-search
-fi
-
-# Install zsh-vi-mode
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]; then
-  git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
-fi
-
-# Install zsh-z
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-z" ]; then
-  git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
-fi
-
-# Check if already a vscode settings.json file exists
-if [ ! -L ~/Library/Application\ Support/Code/User/settings.json ]; then
+if [ ! -L "$vscode_settings_dir/settings.json" ]; then
     # Backup existing settings.json if it exists
-    mv ~/Library/Application\ Support/Code/User/settings.json ~/Library/Application\ Support/Code/User/settings.json.backup
+    [ -f "$vscode_settings_dir/settings.json" ] && mv "$vscode_settings_dir/settings.json" "$vscode_settings_dir/settings.json.backup"
 
     # Create a symlink
-    ln -s ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+    mkdir -p "$vscode_settings_dir"
+    ln -s ~/dotfiles/vscode/settings.json "$vscode_settings_dir/settings.json"
 fi
 
 # Create symlinks for dotfiles
@@ -72,7 +84,7 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
 fi
 
 # Install node and npm if not installed
-if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
+if ! command_exists node || ! command_exists npm; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # macOS-specific installation
         brew install node
@@ -91,9 +103,7 @@ if [ ! -d ~/.vim/plugged/copilot.vim ]; then
     vim -c 'Copilot setup' -c 'qa!'
 fi
 
-# let zsh use the pyenv python
-# https://opensource.com/article/19/5/python-3-default-mac
-# Check if the command exists in ~/.zshrc
+# Pyenv setup
 if ! grep -q 'if command -v pyenv 1>/dev/null 2>&1; then' ~/.zshrc; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # macOS-specific pyenv setup
