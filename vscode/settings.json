@@ -39,6 +39,7 @@
   "git.autofetch": true,
   "python.venvPath": "${env:HOME}/repos",
   "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
+  "python.linting.pylintArgs": ["--disable=W1203"],
   "RainbowBrackets.depreciation-notice": false,
   "editor.formatOnPaste": true,
   "notebook.formatOnSave.enabled": true,
