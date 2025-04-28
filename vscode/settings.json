@@ -44,5 +44,14 @@
   "editor.formatOnPaste": true,
   "notebook.formatOnSave.enabled": true,
   "editor.tabSize": 2,
-  "editor.detectIndentation": false
+  "editor.detectIndentation": false,
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.inlineSuggest.enabled": false,
+  },
+  "[mdx]": {
+    "editor.wordWrap": "on",
+    "editor.inlineSuggest.enabled": false,
+  },
+  "workbench.colorTheme": "Solarized Light"
 }
