@@ -46,6 +46,9 @@ alias zshconfig="vim ~/dotfiles/.zshrc"
 alias vimconfig="vim ~/dotfiles/.vimrc"
 alias tmuxconfig="vim ~/dotfiles/.tmux.conf"
 alias ghcs="gh copilot suggest"
+alias dc="docker compose"
+alias dcd="docker compose down"
+
 
 # Add pyenv to PATH so pyenv python is used instead of system python
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -111,3 +114,9 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Ubuntu-specific aliases (if any)
   # Add them here
 fi
+
+# create a file in a not yet existing directory
+mktouch() {
+    mkdir -p "$(dirname "$1")" && touch "$1"
+}
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
