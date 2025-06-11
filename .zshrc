@@ -48,6 +48,8 @@ alias tmuxconfig="vim ~/dotfiles/.tmux.conf"
 alias ghcs="gh copilot suggest"
 alias dc="docker compose"
 alias dcd="docker compose down"
+alias e="exit"
+alias c="clear"
 
 
 # Add pyenv to PATH so pyenv python is used instead of system python
