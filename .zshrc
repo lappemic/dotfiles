@@ -120,3 +120,10 @@ mktouch() {
     mkdir -p "$(dirname "$1")" && touch "$1"
 }
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# Auto-start tmux if not already inside a tmux session
+if command -v tmux &> /dev/null; then
+  if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
+    tmux
+  fi
+fi
