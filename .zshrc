@@ -28,11 +28,6 @@ source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-sy
 # Enable autosuggestions
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Setup direnv
-if command -v direnv &> /dev/null; then
-  eval "$(direnv hook zsh)"
-fi
-
 # Enable command auto-correction.
 ENABLE_CORRECTION="true"
 
@@ -74,6 +69,34 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   esac
 fi
 
+# Conditional Homebrew PATH addition
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+fi
+
+# Platform-specific aliases
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS-specific alias
+  alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  # Ubuntu-specific aliases (if any)
+  # Add them here
+fi
+
+# create a file in a not yet existing directory
+mktouch() {
+    mkdir -p "$(dirname "$1")" && touch "$1"
+}
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# Load private tokens from ~/.secrets (not tracked by git)
+[[ -f ~/.secrets ]] && source ~/.secrets
+
+# Setup direnv
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
 # Conda initialization
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS Conda setup
@@ -103,29 +126,12 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   unset __conda_setup
 fi
 
-# Conditional Homebrew PATH addition
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
-fi
-
-# Platform-specific aliases
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  # macOS-specific alias
-  alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  # Ubuntu-specific aliases (if any)
-  # Add them here
-fi
-
-# create a file in a not yet existing directory
-mktouch() {
-    mkdir -p "$(dirname "$1")" && touch "$1"
-}
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
-
 # Auto-start tmux if not already inside a tmux session
-if command -v tmux &> /dev/null; then
-  if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
-    tmux
-  fi
-fi
+if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -n "$PS1" ]] && [[ -t 1 ]]; then
+  tmux
+fi  
+. "$HOME/.local/bin/env"
+
+# Homebrew Ruby
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
