@@ -11,6 +11,7 @@ Plug 'airblade/vim-gitgutter'   " Git integration
 Plug 'davidhalter/jedi-vim'     " Python autocompletion
 " Plug 'github/copilot.vim'       " Github copilot (disabled)
 Plug 'tpope/vim-surround'       " Surround text objects
+Plug 'christoomey/vim-tmux-navigator'  " Seamless vim/tmux navigation
 
 " Initialize plugin system
 call plug#end()
