@@ -50,6 +50,7 @@ set updatetime=300          " Faster updates (default 4000ms)
 let mapleader = " "
 
 " NERDTree settings
+let NERDTreeShowHidden=1    " Show dotfiles
 " -> Toggle NERDTree with Ctrl+n
 map <C-n> :NERDTreeToggle<CR>   
 
