@@ -49,20 +49,20 @@ alias ll="ls -lah"
 alias pnd="pnpm dev"
 alias pni="pnpm install"
 
-# Semantic commit helper: gc <type> <message> (e.g., gc feat "add login")
-gc() {
+# Semantic commit helper: gsc <type> <message> (e.g., gsc feat "add login")
+gsc() {
   if [ $# -lt 2 ]; then
-    echo "Usage: gc <type> <message>"
+    echo "Usage: gsc <type> <message>"
     echo "Types: feat, fix, docs, style, refactor, test, chore"
     return 1
   fi
   git commit -m "$1: $2"
 }
 
-# Stage all and semantic commit: gac <type> <message>
-gac() {
+# Stage all and semantic commit: gsac <type> <message>
+gsac() {
   if [ $# -lt 2 ]; then
-    echo "Usage: gac <type> <message>"
+    echo "Usage: gsac <type> <message>"
     echo "Types: feat, fix, docs, style, refactor, test, chore"
     return 1
   fi
