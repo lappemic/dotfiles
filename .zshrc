@@ -36,7 +36,7 @@ ENABLE_CORRECTION="true"
 
 # Custom aliases
 alias icd='cd $(find * -type d | fzf)'
-alias gacp="git add .; git commit -m 'update'; git push"
+alias gacp="git add . && git commit && git push"
 alias zshconfig="vim ~/dotfiles/.zshrc"
 alias vimconfig="vim ~/dotfiles/.vimrc"
 alias tmuxconfig="vim ~/dotfiles/.tmux.conf"
@@ -45,6 +45,9 @@ alias dc="docker compose"
 alias dcd="docker compose down"
 alias e="exit"
 alias c="clear"
+alias ll="ls -lah"
+alias pnd="pnpm dev"
+alias pni="pnpm install"
 
 
 # Add pyenv to PATH so pyenv python is used instead of system python
