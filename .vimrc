@@ -9,7 +9,8 @@ Plug 'junegunn/fzf.vim'         " FZF integration for Vim
 Plug 'scrooloose/nerdtree'      " File explorer
 Plug 'airblade/vim-gitgutter'   " Git integration
 Plug 'davidhalter/jedi-vim'     " Python autocompletion
-Plug 'github/copilot.vim'       " Github copilot
+" Plug 'github/copilot.vim'       " Github copilot (disabled)
+Plug 'tpope/vim-surround'       " Surround text objects
 
 " Initialize plugin system
 call plug#end()
@@ -38,6 +39,8 @@ set termguicolors           " Enable 24-bit RGB colors
 set hidden                  " Switch buffers without saving
 set undofile                " Persistent undo across sessions
 set undodir=~/.vim/undodir  " Store undo files here
+set backupdir=~/.vim/backupdir  " Store backup files here
+set directory=~/.vim/swapdir    " Store swap files here
 set scrolloff=8             " Keep 8 lines visible above/below cursor
 set signcolumn=yes          " Prevent layout shift from gitgutter
 set updatetime=300          " Faster updates (default 4000ms)
