@@ -64,8 +64,8 @@ let g:jedi#completions_enabled = 1
 let g:jedi#auto_initialization = 1
 let g:jedi#show_call_signatures = "1"
 
-" Open NERDTree on startup and move cursor to file
-autocmd VimEnter * NERDTree | wincmd p
+" Open NERDTree on startup: use NERDTreeFind if file given, else plain NERDTree
+autocmd VimEnter * if argc() > 0 | NERDTreeFind | wincmd p | else | NERDTree | wincmd p | endif
 
 " Close vim if NERDTree is the only window left
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
