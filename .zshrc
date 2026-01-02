@@ -143,10 +143,6 @@ conda() {
   conda "$@"
 }
 
-# Auto-start tmux if not already inside a tmux session
-if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -n "$PS1" ]] && [[ -t 1 ]]; then
-  tmux
-fi  
 . "$HOME/.local/bin/env"
 
 # Homebrew Ruby
