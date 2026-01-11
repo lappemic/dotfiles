@@ -148,3 +148,10 @@ conda() {
 # Homebrew Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
+
+# Ghostty tab titles
+# manual: tabtitle "api-prod"
+tabtitle () { printf '\033]0;%s\007' "$1"; }
+
+# auto: title = current folder name
+precmd () { printf '\033]0;%s\007' "${PWD:t}"; }
