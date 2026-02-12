@@ -81,6 +81,10 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 mkdir -p ~/.ssh
 ln -sf ~/dotfiles/.ssh/config ~/.ssh/config
 
+# Ensure Ghostty config directory exists and link config
+mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
+ln -sf ~/dotfiles/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/config
+
 # Install Vim-Plug and Gruvbox
 install_vim_plug
 install_gruvbox
