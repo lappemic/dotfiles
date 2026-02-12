@@ -150,8 +150,21 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
 
 # Ghostty tab titles
-# manual: tabtitle "api-prod"
-tabtitle () { printf '\033]0;%s\007' "$1"; }
+_tabtitle_manual=""
 
-# auto: title = current folder name
-precmd () { printf '\033]0;%s\007' "${PWD:t}"; }
+# manual: tabtitle "api-prod" (sticky until tabtitle "")
+tabtitle () {
+  _tabtitle_manual="$1"
+  printf '\033]0;%s\007' "$1"
+}
+
+# auto: title = current folder name (unless manual title set)
+precmd () {
+  if [[ -z "$_tabtitle_manual" ]]; then
+    printf '\033]0;%s\007' "${PWD:t}"
+  fi
+}
+
+# Claude Code profiles (separate Atlassian accounts)
+alias claude-work='CLAUDE_CONFIG_DIR="$HOME/.claude-work" claude'
+alias claude-personal='CLAUDE_CONFIG_DIR="$HOME/.claude-personal" claude'
