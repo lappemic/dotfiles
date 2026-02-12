@@ -48,10 +48,10 @@ keybind = shift+enter=text:\x1b\r
 keybind = alt+t=text:\x1bt
 
 # Vim-style split navigation
-keybind = super+shift+h=goto_split:left
+keybind = super+shift+h=goto_split:previous
 keybind = super+shift+j=goto_split:down
 keybind = super+shift+k=goto_split:up
-keybind = super+shift+l=goto_split:right
+keybind = super+shift+l=goto_split:next
 
 # Equalize splits - press after cmd+d to make all panes equal size
 keybind = super+e=equalize_splits
