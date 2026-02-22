@@ -168,3 +168,6 @@ precmd () {
 # Claude Code profiles (separate Atlassian accounts)
 alias claude-work='CLAUDE_CONFIG_DIR="$HOME/.claude-work" claude'
 alias claude-personal='CLAUDE_CONFIG_DIR="$HOME/.claude-personal" claude'
+alias claude-army='~/repos/open-claude-instances.sh'
+
+alias gam="/Users/mi/bin/gamadv-xtd3/gam"
