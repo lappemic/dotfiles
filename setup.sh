@@ -85,6 +85,12 @@ ln -sf ~/dotfiles/.ssh/config ~/.ssh/config
 mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
 ln -sf ~/dotfiles/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/config
 
+# Link custom scripts from dotfiles/bin to ~/.local/bin
+mkdir -p ~/.local/bin
+for script in ~/dotfiles/bin/*; do
+    ln -sf "$script" ~/.local/bin/
+done
+
 # Install Vim-Plug and Gruvbox
 install_vim_plug
 install_gruvbox

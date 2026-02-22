@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO="${1:-}"
+COUNT="${2:-2}"
+BASE_DIR="${GHOSTTY_PANES_DIR:-$HOME/repos}"
+
+if [[ -z "$REPO" ]]; then
+  cat <<EOF
+Usage: ghostty-panes <reponame> [count]
+
+Opens a new Ghostty tab with side-by-side split panes.
+
+Arguments:
+  reponame  Base name of the repo directories
+  count     Number of panes, 1-5 (default: 2)
+
+Directories opened:
+  ~/repos/<reponame>
+  ~/repos/<reponame>-2
+  ~/repos/<reponame>-3  ...
+
+Environment:
+  GHOSTTY_PANES_DIR  Base directory (default: ~/repos)
+
+Requires default Ghostty keybindings:
+  Cmd+T  new tab        Cmd+D  split right
+  Cmd+E  equalize       Cmd+[  previous split
+EOF
+  exit 1
+fi
+
+if (( COUNT < 1 || COUNT > 5 )); then
+  echo "Error: count must be between 1 and 5"
+  exit 1
+fi
+
+# Build and verify directory list
+dirs=()
+for i in $(seq 1 "$COUNT"); do
+  if (( i == 1 )); then
+    dir="${BASE_DIR}/${REPO}"
+  else
+    dir="${BASE_DIR}/${REPO}-${i}"
+  fi
+  if [[ ! -d "$dir" ]]; then
+    echo "Error: directory not found: ${dir}"
+    exit 1
+  fi
+  dirs+=("$dir")
+done
+
+# AppleScript helpers for sending keystrokes to Ghostty
+type_and_enter() {
+  osascript <<EOF
+tell application "System Events"
+    keystroke "$1"
+    delay 0.05
+    key code 36
+end tell
+EOF
+}
+
+ghostty_cmd() {
+  osascript -e "tell application \"System Events\" to keystroke \"$1\" using {command down}"
+}
+
+# Open new Ghostty tab
+osascript -e 'tell application "Ghostty" to activate'
+sleep 0.3
+ghostty_cmd "t"
+sleep 0.8
+
+# cd in first pane
+type_and_enter "cd ${dirs[0]}"
+sleep 0.3
+ghostty_cmd "k"
+sleep 0.2
+
+# Create right-splits for remaining panes
+for i in $(seq 1 $(( COUNT - 1 ))); do
+  ghostty_cmd "d"
+  sleep 0.6
+  type_and_enter "cd ${dirs[$i]}"
+  sleep 0.3
+  ghostty_cmd "k"
+  sleep 0.2
+done
+
+# Equalize split widths
+if (( COUNT > 1 )); then
+  sleep 0.2
+  ghostty_cmd "e"
+fi
+
+# Navigate back to first pane
+for _ in $(seq 1 $(( COUNT - 1 ))); do
+  sleep 0.1
+  osascript -e 'tell application "System Events" to keystroke "[" using {command down}'
+done
